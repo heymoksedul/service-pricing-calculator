@@ -73,11 +73,11 @@ jQuery(document).ready(function($) {
         const container = $('#pp-complexity-container');
         nav.empty();
         container.empty();
-
+    
         currentVariants.forEach((v, index) => {
             const isActive = index === 0 ? 'active' : '';
             const display = index === 0 ? '' : 'display:none;';
-
+    
             nav.append(`
                 <button type="button" class="pp-nav-btn ${isActive}" data-target="${v.id}">
                     <span class="pp-v-name-text">${v.name}</span>
@@ -86,48 +86,42 @@ jQuery(document).ready(function($) {
             
             container.append(`
                 <div class="pp-complexity-pane" data-level="${v.id}" style="${display}">
-                    <div class="pp-form-card" style="border-left: 4px solid var(--pp-primary);">
-                        <div class="pp-pane-header">
-                            <div style="display:flex; gap:12px; align-items:center;">
-                                <span class="dashicons dashicons-tag" style="color:var(--pp-primary);"></span>
-                                <input type="text" class="pp-input pp-variant-name-input" value="${v.name}" data-id="${v.id}" style="max-width:200px; font-weight:700;">
-                            </div>
-                            <button type="button" class="pp-delete-variant-btn" data-id="${v.id}">Delete Variant</button>
+                    <div class="pp-pane-header">
+                        <div style="display:flex; gap:10px; align-items:center;">
+                            <label class="pp-label" style="margin:0;">Variant Name:</label>
+                            <input type="text" class="pp-input pp-variant-name-input" value="${v.name}" data-id="${v.id}" style="max-width:200px; font-weight:600;">
                         </div>
+                        <button type="button" class="pp-delete-variant-btn" data-id="${v.id}">Remove Variant</button>
+                    </div>
 
-                        <div class="pp-cols">
-                            <div>
-                                <label class="pp-label">Base Price ($)</label>
-                                <input type="number" step="0.01" class="pp-input pp-input-price" value="${v.price || ''}" placeholder="0.00">
-                                <p style="font-size:11px; color:#94a3b8; margin-top:6px;">This price will be shown in the badge.</p>
-                            </div>
-                            <div>
-                                <label class="pp-label">Visual Preview</label>
-                                <div class="pp-upload-card">
-                                    <input type="hidden" class="pp-input-image" value="${v.image || ''}">
-                                    <div class="pp-upload-preview">
-                                        ${v.image ? `<img src="${v.image}">` : '<div style="height:100px; background:#f1f5f9; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#cbd5e1;"><span class="dashicons dashicons-format-image" style="font-size:40px; width:40px; height:40px;"></span></div>'}
-                                    </div>
-                                    <button type="button" class="pp-upload-trigger pp-btn pp-btn-secondary" style="padding: 6px 12px; font-size: 12px;">
-                                        ${v.image ? 'Replace Image' : 'Select Image'}
-                                    </button>
+                    <div class="pp-cols">
+                        <div class="pp-form-row">
+                            <label class="pp-label">Base Price ($)</label>
+                            <input type="number" step="0.01" class="pp-input pp-input-price" value="${v.price || ''}" placeholder="0.00">
+                        </div>
+                        <div class="pp-form-row">
+                            <label class="pp-label">Visual Preview</label>
+                            <div class="pp-upload-card">
+                                <input type="hidden" class="pp-input-image" value="${v.image || ''}">
+                                <div class="pp-upload-preview">
+                                    ${v.image ? `<img src="${v.image}">` : '<div style="font-size:12px; color:#94a3b8; margin-bottom:10px;">(No Image)</div>'}
                                 </div>
+                                <button type="button" class="pp-upload-trigger pp-btn pp-btn-secondary" style="font-size: 11px; padding: 4px 8px;">
+                                    ${v.image ? 'Change' : 'Select'}
+                                </button>
                             </div>
                         </div>
                     </div>
-
-                    <div class="pp-form-card">
-                        <div class="pp-card-title">
-                            <span class="dashicons dashicons-editor-help"></span>
-                            Customer Q&A Section
+                    
+                    <div class="pp-form-section" style="margin-top:20px;">
+                        <div class="pp-section-title">Customer Q&A</div>
+                        <div class="pp-form-row">
+                            <label class="pp-label">Question</label>
+                            <input type="text" class="pp-input pp-input-question" value="${v.qa_question || ''}" placeholder="e.g. What defines this tier?">
                         </div>
                         <div class="pp-form-row">
-                            <label class="pp-label">The Defining Question</label>
-                            <input type="text" class="pp-input pp-input-question" value="${v.qa_question || ''}" placeholder="e.g. What defines a 'Simple' background?">
-                        </div>
-                        <div class="pp-form-row">
-                            <label class="pp-label">Detailed Answer</label>
-                            <textarea class="pp-textarea" rows="3" class="pp-input-answer" placeholder="Explain the criteria for this tier...">${v.qa_answer || ''}</textarea>
+                            <label class="pp-label">Answer</label>
+                            <textarea class="pp-textarea" rows="2" placeholder="Describe the complexity...">${v.qa_answer || ''}</textarea>
                         </div>
                     </div>
                 </div>
