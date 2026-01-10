@@ -17,6 +17,7 @@ class Path_Pricing {
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_scripts' ] );
 		add_shortcode( 'path_pricing_calculator', [ $this, 'render_shortcode' ] );
+		add_shortcode( 'path_pricing_simple', [ $this, 'render_simple_shortcode' ] );
         add_action( 'wp_ajax_pp_save_services', [ $this, 'handle_save_services' ] );
         add_action( 'wp_ajax_pp_get_services', [ $this, 'handle_get_services' ] );
         add_action('wp_ajax_nopriv_pp_get_services', [$this, 'handle_get_services']);
@@ -79,14 +80,32 @@ class Path_Pricing {
 	}
 
 	public function render_shortcode( $atts ) {
+        $atts = shortcode_atts([
+            'service' => ''
+        ], $atts);
+
 		wp_enqueue_script( 'pp-frontend-script' );
         wp_enqueue_style( 'pp-frontend-style' );
-        // Render the skeleton HTML for the calculator
-		return '
-        <div id="pp-calculator-wrapper" class="pp-calculator-wrapper">
-            <div class="pp-loading">Loading calculator...</div>
-        </div>';
+        
+		return sprintf(
+            '<div class="pp-calculator-wrapper" data-type="full" data-service="%s"><div class="pp-loading">Loading calculator...</div></div>',
+            esc_attr($atts['service'])
+        );
 	}
+
+    public function render_simple_shortcode( $atts ) {
+        $atts = shortcode_atts([
+            'service' => ''
+        ], $atts);
+
+        wp_enqueue_script( 'pp-frontend-script' );
+        wp_enqueue_style( 'pp-frontend-style' );
+
+        return sprintf(
+            '<div class="pp-calculator-wrapper" data-type="simple" data-service="%s"><div class="pp-loading">Loading calculator...</div></div>',
+            esc_attr($atts['service'])
+        );
+    }
 
 	public function handle_save_services() {
 		check_ajax_referer( 'pp_admin_nonce', 'nonce' );
