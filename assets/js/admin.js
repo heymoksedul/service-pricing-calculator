@@ -216,28 +216,36 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         e.stopPropagation();
         
-        const id = String($(this).attr('data-id'));
-        console.log('Attempting to delete variant:', id);
+        const btn = $(this);
+        const id = String(btn.attr('data-id'));
         
         if (currentVariants.length <= 1) {
             alert('A service must have at least one pricing variant.');
             return;
         }
         
-        // Custom confirm loop to avoid headless issues or blocking
-        const confirmed = window.confirm('Are you sure you want to delete this variant?');
-        if (!confirmed) {
-            console.log('Delete cancelled');
+        if (!btn.hasClass('pp-confirming')) {
+            // Step 1: Confirm state
+            btn.addClass('pp-confirming').text('Confirm Delete?').css({
+                'background': '#b32d2e',
+                'color': '#fff',
+                'border-color': '#8a2324'
+            });
+            
+            // Revert after 3s if not clicked again
+            setTimeout(() => {
+                btn.removeClass('pp-confirming').text('Delete Variant').css({
+                    'background': '#fff',
+                    'color': '#b32d2e',
+                    'border-color': '#b32d2e'
+                });
+            }, 3000);
             return;
         }
 
+        // Step 2: Logic
         syncCurrentData();
-        const beforeLen = currentVariants.length;
         currentVariants = currentVariants.filter(v => String(v.id) !== id);
-        const afterLen = currentVariants.length;
-        
-        console.log(`Deleted variant ${id}. Count: ${beforeLen} -> ${afterLen}`);
-        
         buildModalStructure();
     });
 
