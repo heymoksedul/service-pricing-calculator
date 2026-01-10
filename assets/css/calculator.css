@@ -1,0 +1,426 @@
+/* Main Wrapper - Classic Design */
+.pp-calculator-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* Inputs & Selects */
+.pp-select,
+.pp-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc; /* Classic gray */
+  border-radius: 4px;
+  font-size: 15px;
+  color: #333;
+  background-color: #fff;
+  transition: all 0.2s;
+}
+
+.pp-select:focus,
+.pp-input:focus {
+  border-color: #4d9dfb;
+  box-shadow: 0 0 0 1px #4d9dfb;
+  outline: none;
+}
+
+/* Slider Track */
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #e0e0e0;
+  border-radius: 3px;
+}
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #e0e0e0;
+  border-radius: 3px;
+}
+
+/* Slider Thumb - Primary Color */
+input[type="range"]::-webkit-slider-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #4d9dfb;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border: 2px solid #fff;
+}
+input[type="range"]::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #4d9dfb;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Complexity Buttons - Classic */
+.complexity-btn {
+  flex: 1;
+  padding: 8px 0 !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px; /* Classic Rect */
+  background: #fdfdfd !important;
+  color: #555 !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s;
+  text-align: center !important;
+}
+
+.complexity-btn:hover {
+  border-color: #4d9dfb !important;
+  color: #4d9dfb;
+}
+
+.complexity-btn.active {
+  background: #4d9dfb !important;
+  color: #fff !important;
+  border-color: #4d9dfb;
+  box-shadow: none; /* Flat active state */
+}
+
+/* Calculate Button */
+.pp-calculate-btn {
+  width: 100%;
+  padding: 14px;
+  background: #4d9dfb;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 15px;
+  box-shadow: none;
+}
+
+.pp-calculate-btn:hover {
+  background: #3b8cd8; /* Darker shade of #4D9DFB */
+}
+
+/* Free Trial Button */
+.pp-free-trial-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #32a2ff;
+  color: #fff;
+  border-radius: 12px !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: none;
+  transition: background 0.2s;
+}
+.pp-free-trial-btn:hover {
+  background: #218838;
+}
+
+/* Left Column - Image & Text */
+.pp-calc-left {
+  flex: 1;
+  min-width: 300px;
+}
+@media (max-width: 768px) {
+  .pp-calc-left {
+    border-right: none;
+    padding-right: 0;
+  }
+}
+
+/* Service Header in Left Column */
+.pp-service-header {
+  margin-bottom: 25px;
+}
+
+.pp-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+#pp-header-title {
+  margin: 0;
+  font-size: 24px;
+  color: #2c72c4; /* Matching reference blue title */
+  font-weight: 600;
+}
+
+#pp-header-desc {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.pp-price-tag {
+  background: #6c757d;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.service-preview-img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+  display: block;
+}
+
+.pp-qa-section h4 {
+  color: #23282d;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.pp-qa-section p {
+  color: #555d66;
+  line-height: 1.6;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Right Column - Controls */
+.pp-calc-right {
+  flex: 1;
+  min-width: 300px;
+}
+@media (max-width: 768px) {
+  .pp-calc-right {
+    padding-left: 0;
+  }
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #191e23;
+  font-size: 16px;
+}
+
+/* Inputs & Selects */
+.pp-select,
+.pp-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #32373c;
+  background-color: #fff;
+  transition: all 0.2s;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.pp-select:focus,
+.pp-input:focus {
+  border-color: #32a2ff;
+  box-shadow: 0 0 0 1px #32a2ff;
+  outline: none;
+}
+
+/* Range Slider - Custom Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+  margin: 12px 0;
+}
+input[type="range"]:focus {
+  outline: none;
+}
+
+/* Track */
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #dbdbdb;
+  border-radius: 4px;
+}
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #dbdbdb;
+  border-radius: 4px;
+}
+
+/* Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: #32a2ff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8px; /* center thumb */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border: 2px solid #fff;
+  transition: transform 0.1s;
+}
+input[type="range"]::-moz-range-thumb {
+  height: 22px;
+  width: 22px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #32a2ff;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Range Labels */
+.turnaround-labels {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Equal columns for exact alignment */
+  font-size: 13px;
+  color: #999;
+  margin-top: 5px;
+  font-weight: 500;
+  text-align: center;
+}
+.turnaround-labels span:first-child {
+  text-align: left;
+}
+.turnaround-labels span:last-child {
+  text-align: right;
+}
+
+/* Complexity Buttons (Pills) */
+.complexity-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.complexity-btn {
+  flex: 1;
+  padding: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 50px; /* Pill shape */
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.complexity-btn:hover {
+  border-color: #32a2ff;
+  color: #32a2ff;
+}
+
+.complexity-btn.active {
+  background: #32a2ff;
+  color: #fff;
+  border-color: #32a2ff;
+  box-shadow: 0 4px 10px rgba(0, 124, 186, 0.3);
+}
+
+/* Calculate Button */
+.pp-calculate-btn {
+  width: 100%;
+  padding: 16px;
+  background: #32a2ff; /* Soft blue from screenshot */
+  color: #fff;
+  border: none;
+  border-radius: 8px; /* Slightly less rounded than pills */
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 15px;
+  box-shadow: 0 4px 12px rgba(107, 165, 214, 0.4);
+}
+
+.pp-calculate-btn:hover {
+  background: #5a8cb8;
+}
+
+.pp-calculate-btn:active {
+  transform: translateY(1px);
+}
+
+/* Result Table */
+.pp-result-table {
+  background: #fcfcfc;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  margin-top: 25px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.pp-result-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 0.5fr 1fr 1fr;
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f1;
+  align-items: center;
+}
+.pp-result-row:last-child {
+  border-bottom: none;
+}
+
+.pp-result-row.header {
+  background: #f6f7f7;
+  font-weight: 600;
+  color: #1d2327;
+}
+
+.pp-result-row span {
+  text-align: center;
+  color: #2c3338;
+}
+/* Free Trial Button */
+.pp-free-trial-btn {
+  display: inline-block;
+  padding: 14px 30px;
+  background: #32a2ff; /* distinct green */
+  color: #fff;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  transition: all 0.2s;
+}
+.pp-free-trial-btn:hover {
+  background: #218838;
+  transform: translateY(-1px);
+  color: #fff;
+}
+img#pp-preview-img {
+    border-radius: 8px;
+}
