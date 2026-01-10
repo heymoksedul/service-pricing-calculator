@@ -67,6 +67,12 @@ jQuery(document).ready(function($) {
         renderTable($(this).val());
     });
 
+    // --- HELPERS ---
+    function truncate(str, len = 12) {
+        if (!str) return '';
+        return str.length > len ? str.substring(0, len) + '..' : str;
+    }
+
     // --- SERVICE MODAL ACTIONS ---
     function buildModalStructure() {
         const nav = $('#pp-complexity-nav');
@@ -80,7 +86,7 @@ jQuery(document).ready(function($) {
     
             nav.append(`
                 <button type="button" class="pp-nav-btn ${isActive}" data-target="${v.id}">
-                    <span class="pp-v-name-text">${v.name}</span>
+                    <span class="pp-v-name-text">${truncate(v.name)}</span>
                 </button>
             `);
             
@@ -252,7 +258,7 @@ jQuery(document).ready(function($) {
         const v = currentVariants.find(v => String(v.id) === id);
         if (v) {
             v.name = newName;
-            $(`.pp-nav-btn[data-target="${id}"] .pp-v-name-text`).text(newName);
+            $(`.pp-nav-btn[data-target="${id}"] .pp-v-name-text`).text(truncate(newName));
         }
     });
 

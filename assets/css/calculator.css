@@ -4,20 +4,31 @@
   flex-wrap: wrap;
   gap: 30px;
   background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Full Mode Styling */
+.pp-calculator-wrapper.pp-mode-full {
   padding: 30px;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
 }
 
+/* Simple Mode Styling (Borderless/No Padding) */
+.pp-calculator-wrapper.pp-mode-simple {
+  padding: 0;
+  border: none;
+}
+
 /* Simple Mode Compact Layout */
 .pp-calculator-simple {
   width: 100%;
-  max-width: 450px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .pp-calculator-simple .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .pp-total-val {
@@ -337,38 +348,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
   text-align: right;
 }
 
-/* Complexity Buttons (Pills) */
-.complexity-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-}
-
-.complexity-btn {
-  flex: 1;
-  padding: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 50px; /* Pill shape */
-  background: #fff;
-  color: #555;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s;
-  text-align: center;
-}
-
-.complexity-btn:hover {
-  border-color: #32a2ff;
-  color: #32a2ff;
-}
-
-.complexity-btn.active {
-  background: #32a2ff;
-  color: #fff;
-  border-color: #32a2ff;
-  box-shadow: 0 4px 10px rgba(0, 124, 186, 0.3);
-}
+/* Complexity Selection (Converted to Select) */
+/* The .pp-select class handles the dropdown styling consistently across services and complexity. */
 
 /* Calculate Button */
 .pp-calculate-btn {

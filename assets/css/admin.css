@@ -129,8 +129,8 @@
 
 .pp-modal {
   background: #fff;
-  width: var(--pp-modal-width);
-  max-width: 100%;
+  width: 100%;
+  max-width: 1280px;
   max-height: 90vh;
   border-radius: var(--pp-radius);
   display: flex;

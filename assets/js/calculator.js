@@ -2,6 +2,7 @@ jQuery(document).ready(function($) {
     $('.pp-calculator-wrapper').each(function() {
         const wrapper = $(this);
         const type = wrapper.data('type') || 'full';
+        wrapper.addClass('pp-mode-' + type);
         const initialServiceName = wrapper.data('service') || '';
         const services = ppData.services || [];
         const defaultVariants = [
@@ -64,7 +65,7 @@ jQuery(document).ready(function($) {
                     </div>
                     <div class="form-group">
                         <label>Complexity</label>
-                        <div class="pp-complexity-btns complexity-buttons"></div>
+                        <select class="pp-complexity-select pp-select"></select>
                     </div>
                     <div class="form-group">
                         <label>Quantity</label>
@@ -88,7 +89,7 @@ jQuery(document).ready(function($) {
 
         // Cached Elements
         const serviceSelect = wrapper.find('.pp-service-select');
-        const complexityContainer = type === 'simple' ? wrapper.find('.pp-complexity-select') : wrapper.find('.pp-complexity-btns');
+        const complexitySelect = wrapper.find('.pp-complexity-select');
         const quantityInput = wrapper.find('.pp-quantity');
         const calcBtn = wrapper.find('.pp-calc-btn');
         const resultArea = type === 'simple' ? wrapper.find('.pp-simple-result') : wrapper.find('.pp-result');
@@ -125,25 +126,11 @@ jQuery(document).ready(function($) {
             if (!service) return;
 
             const svcVariants = (service.variants && service.variants.length > 0) ? service.variants : defaultVariants;
-            complexityContainer.empty();
+            complexitySelect.empty();
 
             svcVariants.forEach((v, index) => {
-                if (type === 'simple') {
-                    const opt = $('<option>').val(v.id).text(v.name);
-                    complexityContainer.append(opt);
-                } else {
-                    const btn = $('<button>')
-                        .addClass(index === 0 ? 'complexity-btn active' : 'complexity-btn')
-                        .text(v.name)
-                        .attr('data-level', v.id)
-                        .on('click', function() {
-                            wrapper.find('.complexity-btn').removeClass('active');
-                            $(this).addClass('active');
-                            currentComplexityId = v.id;
-                            updateUI();
-                        });
-                    complexityContainer.append(btn);
-                }
+                const opt = $('<option>').val(v.id).text(v.name);
+                complexitySelect.append(opt);
                 if (index === 0) currentComplexityId = v.id;
             });
         }
@@ -180,11 +167,12 @@ jQuery(document).ready(function($) {
             updateUI();
         });
 
-        if (type === 'simple') {
-            complexityContainer.on('change', function() {
-                currentComplexityId = $(this).val();
-            });
-        }
+        complexitySelect.on('change', function() {
+            currentComplexityId = $(this).val();
+            if (type !== 'simple') {
+                updateUI();
+            }
+        });
 
         calcBtn.on('click', function() {
             const service = services.find(s => s.id === currentServiceId);
