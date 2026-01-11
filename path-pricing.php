@@ -24,6 +24,7 @@ class Path_Pricing {
         
         // Include Admin Page logic
         require_once plugin_dir_path(__FILE__) . 'includes/admin-page.php';
+        require_once plugin_dir_path(__FILE__) . 'includes/admin-shortcodes.php';
 	}
 
 	public function register_admin_menu() {
@@ -32,10 +33,19 @@ class Path_Pricing {
 			'Path Pricing',
 			'manage_options',
 			'path-pricing',
-			'pp_render_admin_page', // Function from includes/admin-page.php
+			'pp_render_admin_page',
 			'dashicons-calculator',
 			50
 		);
+
+        add_submenu_page(
+            'path-pricing',
+            'Shortcodes',
+            'Shortcodes',
+            'manage_options',
+            'path-pricing-shortcodes',
+            'pp_render_shortcodes_page'
+        );
 	}
 
 	public function enqueue_admin_scripts( $hook ) {
@@ -45,7 +55,7 @@ class Path_Pricing {
 
         wp_enqueue_style('pp-admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin.css', [], time() + 3);
         
-		wp_enqueue_script(
+        wp_enqueue_script(
 			'pp-admin-script',
 			plugin_dir_url( __FILE__ ) . 'assets/js/admin.js',
 			['jquery'],
@@ -76,7 +86,7 @@ class Path_Pricing {
             'services' => get_option('pp_services_data', [])
         ]);
 
-        wp_register_style('pp-frontend-style', plugin_dir_url(__FILE__) . 'assets/css/calculator.css', [], time() + 6);
+        wp_register_style('pp-frontend-style', plugin_dir_url(__FILE__) . 'assets/css/calculator.css', [], time() + 10);
 	}
 
 	public function render_shortcode( $atts ) {

@@ -150,6 +150,7 @@ jQuery(document).ready(function($) {
             wrapper.find('.pp-header-price').text('$' + priceVal.toFixed(2));
 
             const previewImg = wrapper.find('.pp-preview-img');
+            
             if (compData.image) {
                 previewImg.attr('src', compData.image).show();
             } else {
@@ -196,12 +197,12 @@ jQuery(document).ready(function($) {
                 const variant = svcVariants.find(v => v.id === currentComplexityId);
 
                 wrapper.find('.value-row').html(`
-                    <span>${service.title}</span>
-                    <span>${turnData.label}</span>
-                    <span>${variant ? variant.name : ''}</span>
-                    <span>${qty}</span>
-                    <span>$${unitPrice.toFixed(2)}</span>
-                    <span>$${total.toFixed(2)}</span>
+                    <span><b class="pp-m-label">Service</b> ${service.title}</span>
+                    <span><b class="pp-m-label">Turnaround</b> ${turnData.label}</span>
+                    <span><b class="pp-m-label">Complexity</b> ${variant ? variant.name : ''}</span>
+                    <span><b class="pp-m-label">Qty</b> ${qty}</span>
+                    <span><b class="pp-m-label">Unit Price</b> $${unitPrice.toFixed(2)}</span>
+                    <span class="pp-total-cell"><b class="pp-m-label">Total</b> $${total.toFixed(2)}</span>
                 `);
                 resultArea.fadeIn();
             }
